@@ -1,0 +1,23 @@
+﻿<UserControl
+    x:Class="Bratched.Tools.RatingControl.RatingControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="uc" >
+    <Grid>
+        <Viewbox>
+            <Grid 
+                x:Name="gridRating" 
+                Background="{Binding ElementName=uc, Path=Background}">
+                <StackPanel 
+                    x:Name="rateItems" 
+                    Orientation="Horizontal"
+                    Margin="{Binding ElementName=uc, Path=Padding}"/>
+            </Grid>
+        </Viewbox>
+        <Grid 
+            x:Name="gridCaptureMovement"
+            Background="Transparent" />
+    </Grid>
+</UserControl>

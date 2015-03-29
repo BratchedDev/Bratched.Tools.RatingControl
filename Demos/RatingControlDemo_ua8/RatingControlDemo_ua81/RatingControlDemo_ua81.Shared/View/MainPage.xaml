@@ -1,0 +1,78 @@
+﻿<Page
+    x:Class="RatingControlDemo_ua81.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RatingControlDemo_ua81"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
+        <ScrollViewer>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Text = "Rating Control Démo"
+                    Style="{ThemeResource TitleTextBlockStyle}"
+                    />
+                <Button 
+                    Grid.Row="1" 
+                    Grid.Column="0"
+                    HorizontalAlignment="Stretch"
+                    Margin="8"
+                    Content="Simples examples"             
+                    Click="Button_Click_2" />
+                <TextBlock 
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="4 4 4 12"
+                    Text="Sample to see basic features and main properties"
+                    Style="{ThemeResource BodyTextBlockStyle}"
+                    TextWrapping="Wrap"/>               
+                <Button 
+                    Grid.Row="3" 
+                    Margin="8"
+                    Content="MVVM"  
+                    HorizontalAlignment="Stretch"
+                    Click="Button_Click"/>
+                <TextBlock 
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="4 4 4 12"
+                    Text="Show All the properties with DataBinding in a M-V-VM design exemple"
+                    Style="{ThemeResource BodyTextBlockStyle}"
+                    TextWrapping="Wrap"/>
+                <Button 
+                    Grid.Row="5" 
+                    Margin="8"
+                    Content="Limits"     
+                    HorizontalAlignment="Stretch"
+                    Click="Button_Click_1"/>
+                <TextBlock 
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="4 4 4 12"
+                    Text="Check main limits of the component"
+                    Style="{ThemeResource BodyTextBlockStyle}"
+                    TextWrapping="Wrap"/>                
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

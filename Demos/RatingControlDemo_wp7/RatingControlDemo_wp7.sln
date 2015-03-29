@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RatingControlDemo_wp7", "RatingControlDemo_wp7\RatingControlDemo_wp7.csproj", "{889F1544-62A4-4F75-911B-46CFA8B79045}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bratched.Tools.RatingControl_wp71", "..\..\Projects\Bratched.Tools.RatingControl_wp71\Bratched.Tools.RatingControl_wp71.csproj", "{61E3C64B-9E1E-48E5-B51F-3AF883D66A77}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{889F1544-62A4-4F75-911B-46CFA8B79045}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{889F1544-62A4-4F75-911B-46CFA8B79045}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{889F1544-62A4-4F75-911B-46CFA8B79045}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{889F1544-62A4-4F75-911B-46CFA8B79045}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{889F1544-62A4-4F75-911B-46CFA8B79045}.Release|Any CPU.Build.0 = Release|Any CPU
+		{889F1544-62A4-4F75-911B-46CFA8B79045}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{61E3C64B-9E1E-48E5-B51F-3AF883D66A77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61E3C64B-9E1E-48E5-B51F-3AF883D66A77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61E3C64B-9E1E-48E5-B51F-3AF883D66A77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61E3C64B-9E1E-48E5-B51F-3AF883D66A77}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

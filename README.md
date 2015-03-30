@@ -4,6 +4,11 @@
 
 a complete xaml rating control
 
+More informations in
+* [http://dev.bratched.com/fr](http://dev.bratched.com/fr)
+* [http://www.bratched.com](http://www.bratched.com)
+
+
 ## Introduction ##
 
 The Bratched Rating Control is used to show or Edit rate information.
@@ -171,7 +176,7 @@ Example with all the properties
       </rating:RatingControl>
  
  ![](http://dev.bratched.com/fr/wp-content/uploads/sites/2/2015/03/VisualStudioRatingControl2.png)
-
+ 
 ##Version history
 
  * v1.0 

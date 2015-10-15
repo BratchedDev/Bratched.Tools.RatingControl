@@ -104,6 +104,7 @@ namespace Bratched.Tools.RatingControl
             Margin = new Thickness(0);
             Background = new SolidColorBrush(Colors.Transparent);
             IsEditable = false;
+	        AllowHover = true;
             Value = 0;
         }
 
@@ -445,8 +446,12 @@ namespace Bratched.Tools.RatingControl
             get { return (bool)GetValue(IsEditableProperty); }
             set { SetValue(IsEditableProperty, value); }
         }
+		public bool AllowHover {
+			get { return (bool)GetValue(AllowHoverProperty); }
+			set { SetValue(AllowHoverProperty, value); }
+		}
 
-        
+
         public static readonly  DependencyProperty ItemsCountProperty =
            DependencyProperty.Register("ItemsCount", typeof(Int32), typeof(RatingControl),
            new PropertyMetadata(Int32.MinValue, ItemsCountChanged));
@@ -461,6 +466,8 @@ namespace Bratched.Tools.RatingControl
 
         public static readonly DependencyProperty IsEditableProperty =
            DependencyProperty.Register("IsEditable", typeof(bool), typeof(RatingControl), null);
+		public static readonly DependencyProperty AllowHoverProperty =
+		   DependencyProperty.Register("AllowHover", typeof(bool), typeof(RatingControl), null);
 
         public static readonly DependencyProperty ItemTemplateProperty =
           DependencyProperty.Register("ItemTemplate", typeof(Templates), typeof(RatingControl),
@@ -551,7 +558,7 @@ namespace Bratched.Tools.RatingControl
 #if NETFX_CORE
         private void gridRating_PointerMoved(object sender, PointerRoutedEventArgs e)
         {
-            if (IsEditable && IsEnabled && Visibility==Visibility.Visible && rateItems != null && rateItems.Children.Any())
+            if (IsEditable && (AllowHover || e.Pointer.IsInContact) && IsEnabled && Visibility==Visibility.Visible && rateItems != null && rateItems.Children.Any())
             {
                 e.Handled = true; 
                 System.Diagnostics.Debug.WriteLine("PointerMoved {0}", DateTime.Now);   
@@ -566,7 +573,7 @@ namespace Bratched.Tools.RatingControl
 #if WINDOWS_PHONE
         void RatingControl_ManipulationDelta(object sender, System.Windows.Input.ManipulationDeltaEventArgs e)
         {
-            if (IsEditable && IsEnabled && Visibility == Visibility.Visible && e != null && e.ManipulationOrigin != null)
+            if (IsEditable && AllowHover && IsEnabled && Visibility == Visibility.Visible && e != null && e.ManipulationOrigin != null)
             {
                 e.Handled = true;
                 System.Diagnostics.Debug.WriteLine("ManipulationDelta {0} - {1}", DateTime.Now, e.ManipulationOrigin.X);

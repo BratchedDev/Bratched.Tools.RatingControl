@@ -26,6 +26,7 @@ namespace Bratched.Tools.RatingControl
 
     public partial class RatingControl : UserControl
     {
+		private const bool DEBUG_MODE = false;
         public RatingControl()
         {
             EmptyItemsDefinition = new List<IRateItemDefinition>();
@@ -53,7 +54,7 @@ namespace Bratched.Tools.RatingControl
         {
 #if NETFX_CORE
             Value = x / 100;
-#endif            
+#endif
 #if WINDOWS_PHONE
            // Value = x / 100; return;
 
@@ -62,9 +63,10 @@ namespace Bratched.Tools.RatingControl
             double marginX = (ActualWidth - realWidth) / 2;
             if (rateItems.Children.Any() && realWidth > 0)              
                 Value = (x - marginX) / (realWidth) * ItemsCount;
-            System.Diagnostics.Debug.WriteLine(String.Format("New Value {0}, ActualWidth {1}, realWidth {2}, margin {3}, X={4} ", Value, ActualWidth, realWidth, marginX, x));
+			if (DEBUG_MODE)
+                System.Diagnostics.Debug.WriteLine(String.Format("New Value {0}, ActualWidth {1}, realWidth {2}, margin {3}, X={4} ", Value, ActualWidth, realWidth, marginX, x));
 #endif
-        }
+		}
 
 #if NETFX_CORE
         void RatingControl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
@@ -553,8 +555,9 @@ namespace Bratched.Tools.RatingControl
         {
             if (IsEditable && IsEnabled && Visibility==Visibility.Visible && rateItems != null && rateItems.Children.Any())
             {
-                e.Handled = true; 
-                System.Diagnostics.Debug.WriteLine("PointerMoved {0}", DateTime.Now);   
+                e.Handled = true;
+				if (DEBUG_MODE)
+					System.Diagnostics.Debug.WriteLine("PointerMoved {0}", DateTime.Now);   
                 PointerPoint p = e.GetCurrentPoint(rateItems.Children.First());
                 if (p != null && p.Position != null)
                     ChangeItemsValue(p.Position.X);
@@ -569,7 +572,8 @@ namespace Bratched.Tools.RatingControl
             if (IsEditable && IsEnabled && Visibility == Visibility.Visible && e != null && e.ManipulationOrigin != null)
             {
                 e.Handled = true;
-                System.Diagnostics.Debug.WriteLine("ManipulationDelta {0} - {1}", DateTime.Now, e.ManipulationOrigin.X);
+				if (DEBUG_MODE)
+					System.Diagnostics.Debug.WriteLine("ManipulationDelta {0} - {1}", DateTime.Now, e.ManipulationOrigin.X);
                 double x = e.ManipulationOrigin.X;
                 ChangeItemsValue(x);
             }
@@ -584,7 +588,8 @@ namespace Bratched.Tools.RatingControl
                 if (p != null)
                 {
                     ChangeItemsValue(p.X);
-                    System.Diagnostics.Debug.WriteLine("PointerMoved {0} - {1}", DateTime.Now, p.X);
+					if (DEBUG_MODE)
+						System.Diagnostics.Debug.WriteLine("PointerMoved {0} - {1}", DateTime.Now, p.X);
                 }
             }
         }

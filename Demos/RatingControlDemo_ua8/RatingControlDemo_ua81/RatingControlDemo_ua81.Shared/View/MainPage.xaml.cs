@@ -74,5 +74,15 @@ namespace RatingControlDemo_ua81
             this.Frame.Navigate(typeof(SimpleSamplesPage));
         }
 
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MvvmValueOneWayPage));
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(SimpleEditPage));
+
+        }
     }
 }

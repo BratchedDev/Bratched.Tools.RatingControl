@@ -17,6 +17,11 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -71,7 +76,35 @@
                     Margin="4 4 4 12"
                     Text="Check main limits of the component"
                     Style="{ThemeResource BodyTextBlockStyle}"
-                    TextWrapping="Wrap"/>                
+                    TextWrapping="Wrap"/>
+                <Button 
+                    Grid.Row="7" 
+                    Margin="8"
+                    Content="MVVM and Value"     
+                    HorizontalAlignment="Stretch"
+                    Click="Button_Click_3"/>
+                <TextBlock 
+                    Grid.Row="8"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="4 4 4 12"
+                    Text="Test OneWay binding Value in MVVM Pattern"
+                    Style="{ThemeResource BodyTextBlockStyle}"
+                    TextWrapping="Wrap"/>
+                <Button 
+                    Grid.Row="9" 
+                    Margin="8"
+                    Content="MVVM and Value"     
+                    HorizontalAlignment="Stretch"
+                    Click="Button_Click_4"/>
+                <TextBlock 
+                    Grid.Row="10"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="4 4 4 12"
+                    Text="Test Simple Editable rating control"
+                    Style="{ThemeResource BodyTextBlockStyle}"
+                    TextWrapping="Wrap"/>
             </Grid>
         </ScrollViewer>
     </Grid>

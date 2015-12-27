@@ -26,6 +26,8 @@ namespace Bratched.Tools.RatingControl
 
     public partial class RatingControl : UserControl
     {
+        private const bool DEBUG_MODE = false;
+
         public RatingControl()
         {
             EmptyItemsDefinition = new List<IRateItemDefinition>();
@@ -41,29 +43,21 @@ namespace Bratched.Tools.RatingControl
 #if NETFX_CORE
             this.DataContextChanged += RatingControl_DataContextChanged;
             gridCaptureMovement.PointerMoved += gridRating_PointerMoved;
-            gridCaptureMovement.PointerPressed += gridRating_PointerMoved;
+            gridCaptureMovement.ManipulationDelta += GridCaptureMovement_ManipulationDelta;
+            
 #endif
 
             this.Loaded += uc_Loaded;   
             InitDefaultValues();            
         }
 
-        
+      
+
         private void ChangeItemsValue(double x)
         {
-#if NETFX_CORE
-            Value = x / 100;
-#endif            
-#if WINDOWS_PHONE
-           // Value = x / 100; return;
-
-            double widthRatio = Math.Min(this.ActualWidth, rateItems.ActualWidth) != 0 ? rateItems.ActualWidth / Math.Min(this.ActualWidth, rateItems.ActualWidth) : 0;
-            double realWidth = (ActualHeight * ItemsCount) < ActualWidth ? ActualHeight * ItemsCount : ActualWidth;
-            double marginX = (ActualWidth - realWidth) / 2;
-            if (rateItems.Children.Any() && realWidth > 0)              
-                Value = (x - marginX) / (realWidth) * ItemsCount;
-            System.Diagnostics.Debug.WriteLine(String.Format("New Value {0}, ActualWidth {1}, realWidth {2}, margin {3}, X={4} ", Value, ActualWidth, realWidth, marginX, x));
-#endif
+            if (rateItems.Children.Any())
+                Value = RoundSliced(x * ItemsCount / rateItems.ActualWidth);
+            System.Diagnostics.Debug.WriteLine(String.Format("X={2}, New Value {0}, ActualWidth {1}, ", Value, rateItems.ActualWidth, x));
         }
 
 #if NETFX_CORE
@@ -115,9 +109,6 @@ namespace Bratched.Tools.RatingControl
             get { return (double)GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
         }
-
-
-        
 
         /// <summary>
         /// Template of the Rate items, templates can be overrided by Definitions
@@ -219,8 +210,7 @@ namespace Bratched.Tools.RatingControl
             _isGenerating = true;
             try
             {
-                Value = RoundSliced(Value);
-                double localValue = Value;
+                double localValue = RoundValue;
                 foreach (RateItem item in rateItems.Children)
                 {
                     if (localValue > 1)
@@ -246,7 +236,7 @@ namespace Bratched.Tools.RatingControl
             if (RoundValueSlice > 0)                
             {
                 tempValue = value - (value % RoundValueSlice);
-                tempValue = tempValue + ((tempValue + (RoundValueSlice / 2) < tempValue) ? RoundValueSlice : 0); 
+                tempValue = tempValue + (((value % RoundValueSlice) > (RoundValueSlice / 2)) ? RoundValueSlice : 0); 
             }
             return Math.Max(Math.Min(tempValue, ItemsCount), 0);
         }
@@ -446,6 +436,16 @@ namespace Bratched.Tools.RatingControl
             set { SetValue(IsEditableProperty, value); }
         }
 
+        /// <summary>
+        /// return RoundValue of Value if RoundValueSlice > 0
+        /// </summary>
+        public double RoundValue
+        {
+            get
+            {
+                return RoundSliced(Value);
+            }
+        }
         
         public static readonly  DependencyProperty ItemsCountProperty =
            DependencyProperty.Register("ItemsCount", typeof(Int32), typeof(RatingControl),
@@ -517,10 +517,9 @@ namespace Bratched.Tools.RatingControl
 
         private static void ValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (e.OldValue != e.NewValue)
+            RatingControl control = (d as RatingControl);
+            if (control._isLoaded)
             {
-                RatingControl control = (d as RatingControl);
-                control.Value = control.RoundSliced((double)e.NewValue);
                 control.RefreshRateValues();
             }
         }
@@ -553,15 +552,28 @@ namespace Bratched.Tools.RatingControl
         {
             if (IsEditable && IsEnabled && Visibility==Visibility.Visible && rateItems != null && rateItems.Children.Any())
             {
-                e.Handled = true; 
+                e.Handled = true;                
                 System.Diagnostics.Debug.WriteLine("PointerMoved {0}", DateTime.Now);   
                 PointerPoint p = e.GetCurrentPoint(rateItems.Children.First());
                 if (p != null && p.Position != null)
                     ChangeItemsValue(p.Position.X);
+
             }            
         }
 #endif
 
+#if NETFX_CORE
+        private void GridCaptureMovement_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        {
+            if (IsEditable && IsEnabled && Visibility == Visibility.Visible && e != null && e.Position != null)
+            {
+                e.Handled = true;
+                System.Diagnostics.Debug.WriteLine("ManipulationDelta {0} - {1}", DateTime.Now, e.Position.X);
+                double x = e.Position.X;
+                ChangeItemsValue(x);
+            }
+        }
+#endif
 
 #if WINDOWS_PHONE
         void RatingControl_ManipulationDelta(object sender, System.Windows.Input.ManipulationDeltaEventArgs e)

@@ -7,6 +7,8 @@ using System.Text;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
 using Windows.UI.Xaml;
+using System.Windows.Input;
+using RatingControlDemo_ua81.Tools;
 
 namespace RatingControlDemo_ua81.ViewModel
 {
@@ -49,8 +51,11 @@ namespace RatingControlDemo_ua81.ViewModel
         private ObservableCollection<SolidColorBrush> _listColors;
         public ObservableCollection<SolidColorBrush> ListColors { get { return _listColors; } }
 
+        public ICommand Plus1ButtonCommand { get; set; }
+
         public RatingControlExampleViewModel()
         {
+            Plus1ButtonCommand = new RelayCommand((o)=> Value++);
             _listColors = new ObservableCollection<SolidColorBrush>(uintColors.Select(c => 
                 new SolidColorBrush(Color.FromArgb(
                     (byte)(c >> 24),                    

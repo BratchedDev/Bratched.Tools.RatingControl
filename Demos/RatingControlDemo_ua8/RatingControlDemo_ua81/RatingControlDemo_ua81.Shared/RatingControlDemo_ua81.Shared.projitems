@@ -23,8 +23,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\MVVMPage.xaml.cs">
       <DependentUpon>MVVMPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MvvmValueOneWayPage.xaml.cs">
+      <DependentUpon>MvvmValueOneWayPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\OverrideLimitsSamplePage.xaml.cs">
       <DependentUpon>OverrideLimitsSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\SimpleEditPage.xaml.cs">
+      <DependentUpon>SimpleEditPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\SimpleSamplesPage.xaml.cs">
       <DependentUpon>SimpleSamplesPage.xaml</DependentUpon>
@@ -39,7 +45,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)View\MvvmValueOneWayPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)View\OverrideLimitsSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)View\SimpleEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

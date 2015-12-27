@@ -51,7 +51,7 @@
                     <rating:RateItemDefinition 
                             BackgroundColor="{Binding FullColor}"
                             OutlineColor="{Binding FullOutlineColor}"
-                            OutlineThikness="{Binding FullOutlineThikness}"
+                            OutlineThickness="{Binding FullOutlineThickness}"
                             PathData="{Binding PathData}"/>
                     </rating:RatingControl.FullItemsDefinition>
                     
@@ -59,12 +59,12 @@
                         <rating:RateItemDefinition  
                             BackgroundColor="{Binding EmptyColor}"
                             OutlineColor="{Binding EmptyOutlineColor}"
-                            OutlineThikness="{Binding EmptyOutlineThikness}"
+                            OutlineThickness="{Binding EmptyOutlineThickness}"
                             PathData="{Binding PathData}"/>
                     </rating:RatingControl.EmptyItemsDefinition>
                 </rating:RatingControl>
         </Grid>
-        <!--<Grid Width="{Binding FullOutlineThikness}"/>-->
+        <!--<Grid Width="{Binding FullOutlineThickness}"/>-->
         <ScrollViewer 
             Grid.Row="2"
             Margin="16,6.167,0,10"
@@ -241,13 +241,13 @@
                     VerticalAlignment="Center"
                     />
 
-                <!--FullOutlineThikness Demo-->
+                <!--FullOutlineThickness Demo-->
                 <TextBlock 
                     Grid.Row="8"
                     Grid.Column="0"
                     Margin="4"
                     Style="{ThemeResource BodyTextBlockStyle}"
-                    Text="FullOutlineThikness"
+                    Text="FullOutlineThickness"
                     VerticalAlignment="Center"
                     />
                 <TextBox 
@@ -256,15 +256,15 @@
                     Margin="4"
                     Width="80"
                     HorizontalAlignment="Left"
-                    Text="{Binding FullOutlineThikness, Mode=TwoWay}" />
+                    Text="{Binding FullOutlineThickness, Mode=TwoWay}" />
 
-                <!--EmptyOutlineThikness Demo-->
+                <!--EmptyOutlineThickness Demo-->
                 <TextBlock 
                     Grid.Row="9"
                     Grid.Column="0"
                     Margin="4"
                     Style="{ThemeResource BodyTextBlockStyle}"
-                    Text="EmptyOutlineThikness"
+                    Text="EmptyOutlineThickness"
                     VerticalAlignment="Center"
                     />
                 <TextBox 
@@ -273,7 +273,7 @@
                     Margin="4"
                     Width="80"
                     HorizontalAlignment="Left"
-                    Text="{Binding EmptyOutlineThikness, Mode=TwoWay}" />
+                    Text="{Binding EmptyOutlineThickness, Mode=TwoWay}" />
                 <!--Path Data Demo-->
                 <TextBlock 
                     Grid.Row="10"

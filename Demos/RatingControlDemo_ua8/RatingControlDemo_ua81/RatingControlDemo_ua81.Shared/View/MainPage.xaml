@@ -94,7 +94,7 @@
                 <Button 
                     Grid.Row="9" 
                     Margin="8"
-                    Content="MVVM and Value"     
+                    Content="Simple Edit"     
                     HorizontalAlignment="Stretch"
                     Click="Button_Click_4"/>
                 <TextBlock 

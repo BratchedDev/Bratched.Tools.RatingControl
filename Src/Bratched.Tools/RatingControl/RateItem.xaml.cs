@@ -34,8 +34,8 @@ namespace Bratched.Tools.RatingControl
         private SolidColorBrush _emptyBackgroundColor;
         private SolidColorBrush _fullOutlineColor;
         private SolidColorBrush _emptyOutlineColor;
-        private double _fullOutlineThikness;
-        private double _emptyOutlineThikness;
+        private double _fullOutlineThickness;
+        private double _emptyOutlineThickness;
         private string _fullPathData;
         private string _emptyPathData;
         /// <summary>
@@ -106,12 +106,12 @@ namespace Bratched.Tools.RatingControl
         /// <summary>
         /// Outline stroke thikness of the full rate item
         /// </summary>
-        public double FullOutlineThikness
+        public double FullOutlineThickness
         {
-            get { return _fullOutlineThikness; }
+            get { return _fullOutlineThickness; }
             set 
             {
-                _fullOutlineThikness = value;
+                _fullOutlineThickness = value;
                 rateFull.StrokeThickness = value;      
             }
         }
@@ -119,12 +119,12 @@ namespace Bratched.Tools.RatingControl
         /// <summary>
         /// Outline stroke thikness of the empty rate item
         /// </summary>
-        public double EmptyOutlineThikness
+        public double EmptyOutlineThickness
         {
-            get { return _emptyOutlineThikness; }
+            get { return _emptyOutlineThickness; }
             set
             { 
-                _emptyOutlineThikness = value;
+                _emptyOutlineThickness = value;
                rateEmpty.StrokeThickness = value;      
             }
         }
@@ -197,12 +197,12 @@ namespace Bratched.Tools.RatingControl
         //    (d as RateItem).rateEmpty.Stroke = (SolidColorBrush)e.NewValue; 
         //}
 
-        //private static void FullOutlineThiknessChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        //private static void FullOutlineThicknessChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         //{
         //    (d as RateItem).rateFull.StrokeThickness = (double)e.NewValue;              
         //}
 
-        //private static void EmptyOutlineThiknessChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        //private static void EmptyOutlineThicknessChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         //{
         //    (d as RateItem).rateEmpty.StrokeThickness = (double)e.NewValue;      
         //}
@@ -237,13 +237,13 @@ namespace Bratched.Tools.RatingControl
         //   DependencyProperty.Register("FullOutlineColor", typeof(SolidColorBrush), typeof(RateItem),
         //   new PropertyMetadata(null, FullOutlineColorChanged));
 
-        //public static readonly DependencyProperty FullOutlineThiknessProperty =
-        //    DependencyProperty.Register("FullOutlineThikness", typeof(double), typeof(RateItem),
-        //    new PropertyMetadata(null, FullOutlineThiknessChanged));
+        //public static readonly DependencyProperty FullOutlineThicknessProperty =
+        //    DependencyProperty.Register("FullOutlineThickness", typeof(double), typeof(RateItem),
+        //    new PropertyMetadata(null, FullOutlineThicknessChanged));
 
-        //public static readonly DependencyProperty EmptyOutlineThiknessProperty =
-        //    DependencyProperty.Register("EmptyOutlineThikness", typeof(double), typeof(RateItem),
-        //    new PropertyMetadata(null, EmptyOutlineThiknessChanged));
+        //public static readonly DependencyProperty EmptyOutlineThicknessProperty =
+        //    DependencyProperty.Register("EmptyOutlineThickness", typeof(double), typeof(RateItem),
+        //    new PropertyMetadata(null, EmptyOutlineThicknessChanged));
 
         //public static readonly DependencyProperty FullPathDataProperty =
         //  DependencyProperty.Register("FullPathData", typeof(string), typeof(RateItem), 

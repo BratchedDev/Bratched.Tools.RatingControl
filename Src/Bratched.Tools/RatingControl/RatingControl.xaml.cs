@@ -26,8 +26,7 @@ namespace Bratched.Tools.RatingControl
 
     public partial class RatingControl : UserControl
     {
-        private const bool DEBUG_MODE = false;
-
+		private const bool DEBUG_MODE = false;
         public RatingControl()
         {
             EmptyItemsDefinition = new List<IRateItemDefinition>();
@@ -51,13 +50,14 @@ namespace Bratched.Tools.RatingControl
             InitDefaultValues();            
         }
 
-      
+        
 
         private void ChangeItemsValue(double x)
         {
             if (rateItems.Children.Any())
                 Value = RoundSliced(x * ItemsCount / rateItems.ActualWidth);
-            System.Diagnostics.Debug.WriteLine(String.Format("X={2}, New Value {0}, ActualWidth {1}, ", Value, rateItems.ActualWidth, x));
+            if (DEBUG_MODE)
+                System.Diagnostics.Debug.WriteLine(String.Format("X={2}, New Value {0}, ActualWidth {1}, ", Value, rateItems.ActualWidth, x));
         }
 
 #if NETFX_CORE
@@ -98,6 +98,7 @@ namespace Bratched.Tools.RatingControl
             Margin = new Thickness(0);
             Background = new SolidColorBrush(Colors.Transparent);
             IsEditable = false;
+	        AllowHover = true;
             Value = 0;
         }
 
@@ -263,14 +264,14 @@ namespace Bratched.Tools.RatingControl
             IRateItemDefinition fullItemDefinition = GetDefinitionFromIndex(FullItemsDefinition, i); 
             item.FullBackgroundColor = fullItemDefinition != null && fullItemDefinition.BackgroundColor != null ? fullItemDefinition.BackgroundColor : fullDefaultDefinition.BackgroundColor;
             item.FullOutlineColor = fullItemDefinition != null && fullItemDefinition.OutlineColor != null ? fullItemDefinition.OutlineColor : fullDefaultDefinition.OutlineColor;
-            item.FullOutlineThikness = fullItemDefinition != null && fullItemDefinition.OutlineThikness is Double ? Convert.ToDouble(fullItemDefinition.OutlineThikness) : Convert.ToDouble(fullDefaultDefinition.OutlineThikness);
+            item.FullOutlineThickness = fullItemDefinition != null && fullItemDefinition.OutlineThickness is Double ? Convert.ToDouble(fullItemDefinition.OutlineThickness) : Convert.ToDouble(fullDefaultDefinition.OutlineThickness);
             item.FullPathData = fullItemDefinition != null && fullItemDefinition.PathData is String ? Convert.ToString(fullItemDefinition.PathData) : Convert.ToString(fullDefaultDefinition.PathData);
 
             IRateItemDefinition emptyDefaultDefinition = GetDefinitionFromIndex(defaultEmpty, i);
             IRateItemDefinition emptyItemDefinition = GetDefinitionFromIndex(EmptyItemsDefinition, i); 
             item.EmptyBackgroundColor = emptyItemDefinition != null && emptyItemDefinition.BackgroundColor != null ? emptyItemDefinition.BackgroundColor : emptyDefaultDefinition.BackgroundColor;
             item.EmptyOutlineColor = emptyItemDefinition != null && emptyItemDefinition.OutlineColor != null ? emptyItemDefinition.OutlineColor : emptyDefaultDefinition.OutlineColor;
-            item.EmptyOutlineThikness = emptyItemDefinition != null && emptyItemDefinition.OutlineThikness is Double ? Convert.ToDouble(emptyItemDefinition.OutlineThikness) : Convert.ToDouble(emptyDefaultDefinition.OutlineThikness);
+            item.EmptyOutlineThickness = emptyItemDefinition != null && emptyItemDefinition.OutlineThickness is Double ? Convert.ToDouble(emptyItemDefinition.OutlineThickness) : Convert.ToDouble(emptyDefaultDefinition.OutlineThickness);
             item.EmptyPathData = emptyItemDefinition != null && emptyItemDefinition.PathData is String ? Convert.ToString(emptyItemDefinition.PathData) : Convert.ToString(emptyDefaultDefinition.PathData);
 
             if (localValue > 1)
@@ -306,14 +307,14 @@ namespace Bratched.Tools.RatingControl
             {
                 BackgroundColor = new SolidColorBrush(Colors.White),
                 OutlineColor = new SolidColorBrush(Colors.Blue),
-                OutlineThikness = 5,
+                OutlineThickness = 5,
                 PathData = "m 119 427 9 0 c 1 3 -0 7 -4 7 l -5 0 c -4 0 -4 -7 -8.5e-4 -7 z m -2 16 8 0 c 4 0 5 -4 4 -7 l -12 0 c -4 0 -4 7 0 7 z m 12 3 -12 0 c -4 0 -4 7 0 7 l 7 0 c 4 -1.4e-4 5 -4 4 -7 z m -7 16 c 4 0 5 -4 5 -7 0 0 -9 0 -9 0 -4 0 -4 7 0 7 l 3 0 z m -8 -8 c -4 -2 -4 -7 -1 -10 -4 -3 -3 -9 2 -10 -2 -2 -1 -5 -0 -8 -1 -0 -2 -1 -2 -1 3 -8 3 -19 -1 -21 -4 -1 -5 4 -6 7 -3 8 -10 20 -26 20 0 0 0 17 0 24 19 0 24 7 32 8 1 0 1 0 2 0 -2 -2 -2 -6 1 -8 z"
             });
             defaultEmpty.Add(new RateItemDefinitionModel
             {
                 BackgroundColor = new SolidColorBrush(Colors.Transparent),
                 OutlineColor = new SolidColorBrush(Colors.White),
-                OutlineThikness = 2,
+                OutlineThickness = 2,
                 PathData = "m 119 427 9 0 c 1 3 -0 7 -4 7 l -5 0 c -4 0 -4 -7 -8.5e-4 -7 z m -2 16 8 0 c 4 0 5 -4 4 -7 l -12 0 c -4 0 -4 7 0 7 z m 12 3 -12 0 c -4 0 -4 7 0 7 l 7 0 c 4 -1.4e-4 5 -4 4 -7 z m -7 16 c 4 0 5 -4 5 -7 0 0 -9 0 -9 0 -4 0 -4 7 0 7 l 3 0 z m -8 -8 c -4 -2 -4 -7 -1 -10 -4 -3 -3 -9 2 -10 -2 -2 -1 -5 -0 -8 -1 -0 -2 -1 -2 -1 3 -8 3 -19 -1 -21 -4 -1 -5 4 -6 7 -3 8 -10 20 -26 20 0 0 0 17 0 24 19 0 24 7 32 8 1 0 1 0 2 0 -2 -2 -2 -6 1 -8 z"
             });
         }
@@ -324,14 +325,14 @@ namespace Bratched.Tools.RatingControl
             {
                 BackgroundColor = new SolidColorBrush(Colors.Yellow),
                 OutlineColor = new SolidColorBrush(Colors.Orange),
-                OutlineThikness = 1,
+                OutlineThickness = 1,
                 PathData = "M 78 427 C 79 421 89 415 89 395 l -29 0 c 0 20 10 26 11 33 l 6 0 z m -9 -23 4 -1 2 -4 2 4 4 1 -3 3 1 4 L 75 410 l -4 2 1 -4 -3 -3 z m -8 8 c 1 2 1 3 2 4 C 55 414 51 406 50 398 l 8 0 c 0 1 0 2 0 3 l -5 0 c 1 4 3 9 8 12 z m 23 24 0 3 -18 0 0 -3 c 5 0 6 -4 6 -6 0 0 6 0 6 0 0 3 1 6 6 6 z M 100 398 c -1 8 -5 16 -13 19 1 -1 1 -3 2 -4 5 -3 7 -8 8 -12 l -5 0 c 0 -1 0 -2 0 -3 l 8 0 z"
             });
             defaultEmpty.Add(new RateItemDefinitionModel
             {
                 BackgroundColor = new SolidColorBrush(Colors.Transparent),
                 OutlineColor = new SolidColorBrush(Colors.Orange),
-                OutlineThikness = 2,
+                OutlineThickness = 2,
                 PathData = "M 78 427 C 79 421 89 415 89 395 l -29 0 c 0 20 10 26 11 33 l 6 0 z m -9 -23 4 -1 2 -4 2 4 4 1 -3 3 1 4 L 75 410 l -4 2 1 -4 -3 -3 z m -8 8 c 1 2 1 3 2 4 C 55 414 51 406 50 398 l 8 0 c 0 1 0 2 0 3 l -5 0 c 1 4 3 9 8 12 z m 23 24 0 3 -18 0 0 -3 c 5 0 6 -4 6 -6 0 0 6 0 6 0 0 3 1 6 6 6 z M 100 398 c -1 8 -5 16 -13 19 1 -1 1 -3 2 -4 5 -3 7 -8 8 -12 l -5 0 c 0 -1 0 -2 0 -3 l 8 0 z"
             });
         }
@@ -342,14 +343,14 @@ namespace Bratched.Tools.RatingControl
             {
                 BackgroundColor = new SolidColorBrush(Colors.Red),
                 OutlineColor = new SolidColorBrush(Color.FromArgb(255, 200, 0, 0)),
-                OutlineThikness = 1,
+                OutlineThickness = 1,
                 PathData = " m 99 409 c -5 -10 -20 -9 -24 -1 -4 -9 -19 -10 -24 1 -6 12 8 23 24 39 16 -16 29 -27 24 -39 z"
             });
             defaultEmpty.Add(new RateItemDefinitionModel
             {
                 BackgroundColor = new SolidColorBrush(Colors.Transparent),
                 OutlineColor = new SolidColorBrush(Colors.Red),
-                OutlineThikness = 2,
+                OutlineThickness = 2,
                 PathData = " m 99 409 c -5 -10 -20 -9 -24 -1 -4 -9 -19 -10 -24 1 -6 12 8 23 24 39 16 -16 29 -27 24 -39 z"
             });
            
@@ -361,14 +362,14 @@ namespace Bratched.Tools.RatingControl
             {
                 BackgroundColor = new SolidColorBrush(Colors.Yellow),
                 OutlineColor = new SolidColorBrush(Colors.Orange),
-                OutlineThikness = 1,
+                OutlineThickness = 1,
                 PathData = "M 5.5,0 L 4,4 L 0,4 L 3,7 L 2,11 L 5,9 L 6,9 L 9,11 L 8,7 L 11,4 L 7,4 L 5.5,0"
             });
             defaultEmpty.Add(new RateItemDefinitionModel
             {
                 BackgroundColor = new SolidColorBrush(Colors.Transparent),
                 OutlineColor = new SolidColorBrush(Colors.Orange),
-                OutlineThikness = 2,
+                OutlineThickness = 2,
                 PathData = "M 5.5,0 L 4,4 L 0,4 L 3,7 L 2,11 L 5,9 L 6,9 L 9,11 L 8,7 L 11,4 L 7,4 L 5.5,0"
             });
         }
@@ -380,7 +381,7 @@ namespace Bratched.Tools.RatingControl
             {
                 BackgroundColor = new SolidColorBrush(Colors.Red),
                 OutlineColor = new SolidColorBrush(Color.FromArgb(255, 200, 0, 0)),
-                OutlineThikness = 1,
+                OutlineThickness = 1,
                 PathData = "m 75 412 c -14 0 -25 11 -25 25 0 14 11 25 25 25 14 0 25 -11 25 -25 0 -14 -11 -25 -25 -25 z m 8 15 c 2 0 4 2 4 4 0 2 -2 4 -4 4 -2 0 -4 -2 -4 -4 0 -2 2 -4 4 -4 z m -16 0 c 2 0 4 2 4 4 0 2 -2 4 -4 4 -2 0 -4 -2 -4 -4 0 -2 2 -4 4 -4 z m 20 22 c -5 -3 -8 -4 -12 -4 -5 0 -8 1 -12 4 l -1 -1 c 2 -4 8 -8 14 -8 6 0 11 4 14 8 l -1 1 z"
             });
 
@@ -388,7 +389,7 @@ namespace Bratched.Tools.RatingControl
             {
                 BackgroundColor = new SolidColorBrush(Colors.Yellow),
                 OutlineColor = new SolidColorBrush(Colors.Orange),
-                OutlineThikness = 1,
+                OutlineThickness = 1,
                 PathData = "m 75 412 c -14 0 -25 11 -25 25 0 14 11 25 25 25 14 0 25 -11 25 -25 0 -14 -11 -25 -25 -25 z m -12 19 c 0 -2 2 -4 4 -4 2 0 4 2 4 4 0 2 -2 4 -4 4 -2 0 -4 -2 -4 -4 z m 23 16 -21 0 0 -5 21 0 0 5 z M 83 435 c -2 0 -4 -2 -4 -4 0 -2 2 -4 4 -4 2 0 4 2 4 4 0 2 -2 4 -4 4 z"
             });
 
@@ -396,7 +397,7 @@ namespace Bratched.Tools.RatingControl
             {
                 BackgroundColor = new SolidColorBrush(Color.FromArgb(255, 0, 200, 0)),
                 OutlineColor = new SolidColorBrush(Colors.Green),
-                OutlineThikness = 1,
+                OutlineThickness = 1,
                 PathData = "m 75 412 c -14 0 -25 11 -25 25 0 14 11 25 25 25 14 0 25 -11 25 -25 0 -14 -11 -25 -25 -25 z m 8 15 c 2 0 4 2 4 4 0 2 -2 4 -4 4 -2 0 -4 -2 -4 -4 0 -2 2 -4 4 -4 z m -16 0 c 2 0 4 2 4 4 0 2 -2 4 -4 4 -2 0 -4 -2 -4 -4 0 -2 2 -4 4 -4 z m 8 23 c -7 0 -12 -4 -14 -9 l 1 -1 c 4 3 8 5 13 5 6 0 10 -2 13 -5 l 1 1 c -3 4 -8 9 -14 9 z"
             });
 
@@ -405,7 +406,7 @@ namespace Bratched.Tools.RatingControl
             {
                 BackgroundColor = new SolidColorBrush(Colors.Transparent),
                 OutlineColor = new SolidColorBrush(Colors.Red),
-                OutlineThikness = 2,
+                OutlineThickness = 2,
                 PathData = "m 75 412 c -14 0 -25 11 -25 25 0 14 11 25 25 25 14 0 25 -11 25 -25 0 -14 -11 -25 -25 -25 z m 8 15 c 2 0 4 2 4 4 0 2 -2 4 -4 4 -2 0 -4 -2 -4 -4 0 -2 2 -4 4 -4 z m -16 0 c 2 0 4 2 4 4 0 2 -2 4 -4 4 -2 0 -4 -2 -4 -4 0 -2 2 -4 4 -4 z m 20 22 c -5 -3 -8 -4 -12 -4 -5 0 -8 1 -12 4 l -1 -1 c 2 -4 8 -8 14 -8 6 0 11 4 14 8 l -1 1 z"
             });
 
@@ -413,7 +414,7 @@ namespace Bratched.Tools.RatingControl
             {
                 BackgroundColor = new SolidColorBrush(Colors.Transparent),
                 OutlineColor = new SolidColorBrush(Colors.Orange),
-                OutlineThikness = 2,
+                OutlineThickness = 2,
                 PathData = "m 75 412 c -14 0 -25 11 -25 25 0 14 11 25 25 25 14 0 25 -11 25 -25 0 -14 -11 -25 -25 -25 z m -12 19 c 0 -2 2 -4 4 -4 2 0 4 2 4 4 0 2 -2 4 -4 4 -2 0 -4 -2 -4 -4 z m 23 16 -21 0 0 -5 21 0 0 5 z M 83 435 c -2 0 -4 -2 -4 -4 0 -2 2 -4 4 -4 2 0 4 2 4 4 0 2 -2 4 -4 4 z"
             });
 
@@ -421,7 +422,7 @@ namespace Bratched.Tools.RatingControl
             {
                 BackgroundColor = new SolidColorBrush(Colors.Transparent),
                 OutlineColor = new SolidColorBrush(Colors.Green),
-                OutlineThikness = 2,
+                OutlineThickness = 2,
                 PathData = "m 75 412 c -14 0 -25 11 -25 25 0 14 11 25 25 25 14 0 25 -11 25 -25 0 -14 -11 -25 -25 -25 z m 8 15 c 2 0 4 2 4 4 0 2 -2 4 -4 4 -2 0 -4 -2 -4 -4 0 -2 2 -4 4 -4 z m -16 0 c 2 0 4 2 4 4 0 2 -2 4 -4 4 -2 0 -4 -2 -4 -4 0 -2 2 -4 4 -4 z m 8 23 c -7 0 -12 -4 -14 -9 l 1 -1 c 4 3 8 5 13 5 6 0 10 -2 13 -5 l 1 1 c -3 4 -8 9 -14 9 z"
             });         
         }
@@ -435,6 +436,10 @@ namespace Bratched.Tools.RatingControl
             get { return (bool)GetValue(IsEditableProperty); }
             set { SetValue(IsEditableProperty, value); }
         }
+		public bool AllowHover {
+			get { return (bool)GetValue(AllowHoverProperty); }
+			set { SetValue(AllowHoverProperty, value); }
+		}
 
         /// <summary>
         /// return RoundValue of Value if RoundValueSlice > 0
@@ -461,6 +466,8 @@ namespace Bratched.Tools.RatingControl
 
         public static readonly DependencyProperty IsEditableProperty =
            DependencyProperty.Register("IsEditable", typeof(bool), typeof(RatingControl), null);
+		public static readonly DependencyProperty AllowHoverProperty =
+		   DependencyProperty.Register("AllowHover", typeof(bool), typeof(RatingControl), null);
 
         public static readonly DependencyProperty ItemTemplateProperty =
           DependencyProperty.Register("ItemTemplate", typeof(Templates), typeof(RatingControl),
@@ -517,7 +524,7 @@ namespace Bratched.Tools.RatingControl
 
         private static void ValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            RatingControl control = (d as RatingControl);
+                RatingControl control = (d as RatingControl);
             if (control._isLoaded)
             {
                 control.RefreshRateValues();
@@ -550,9 +557,10 @@ namespace Bratched.Tools.RatingControl
 #if NETFX_CORE
         private void gridRating_PointerMoved(object sender, PointerRoutedEventArgs e)
         {
-            if (IsEditable && IsEnabled && Visibility==Visibility.Visible && rateItems != null && rateItems.Children.Any())
+            if (IsEditable && (AllowHover || e.Pointer.IsInContact) && IsEnabled && Visibility==Visibility.Visible && rateItems != null && rateItems.Children.Any())
             {
-                e.Handled = true;                
+                e.Handled = true; 
+				if (DEBUG_MODE)
                 System.Diagnostics.Debug.WriteLine("PointerMoved {0}", DateTime.Now);   
                 PointerPoint p = e.GetCurrentPoint(rateItems.Children.First());
                 if (p != null && p.Position != null)
@@ -578,9 +586,10 @@ namespace Bratched.Tools.RatingControl
 #if WINDOWS_PHONE
         void RatingControl_ManipulationDelta(object sender, System.Windows.Input.ManipulationDeltaEventArgs e)
         {
-            if (IsEditable && IsEnabled && Visibility == Visibility.Visible && e != null && e.ManipulationOrigin != null)
+            if (IsEditable && AllowHover && IsEnabled && Visibility == Visibility.Visible && e != null && e.ManipulationOrigin != null)
             {
                 e.Handled = true;
+				if (DEBUG_MODE)
                 System.Diagnostics.Debug.WriteLine("ManipulationDelta {0} - {1}", DateTime.Now, e.ManipulationOrigin.X);
                 double x = e.ManipulationOrigin.X;
                 ChangeItemsValue(x);
@@ -596,6 +605,7 @@ namespace Bratched.Tools.RatingControl
                 if (p != null)
                 {
                     ChangeItemsValue(p.X);
+					if (DEBUG_MODE)
                     System.Diagnostics.Debug.WriteLine("PointerMoved {0} - {1}", DateTime.Now, p.X);
                 }
             }

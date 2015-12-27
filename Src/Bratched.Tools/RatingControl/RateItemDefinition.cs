@@ -49,10 +49,10 @@ namespace Bratched.Tools.RatingControl
         /// <summary>
         /// Outline thikness for the rate Item
         /// </summary>
-        public object OutlineThikness
+        public object OutlineThickness
         {
-            get { return GetValue(OutlineThiknessProperty); }
-            set { SetValue(OutlineThiknessProperty, value); }
+            get { return GetValue(OutlineThicknessProperty); }
+            set { SetValue(OutlineThicknessProperty, value); }
         }
        
         /// <summary>
@@ -87,15 +87,15 @@ namespace Bratched.Tools.RatingControl
         }
 
         /// <summary>
-        /// Generate event change for OutlineThiknessProperty and redraw RatingControl
+        /// Generate event change for OutlineThicknessProperty and redraw RatingControl
         /// </summary>
         /// <param name="d">define rate element</param>
         /// <param name="e">value property event </param>
-        private static void OutlineThiknessChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OutlineThicknessChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             
             if (e.NewValue is Binding && ParentRatingControl != null)
-                BindingOperations.SetBinding(d, OutlineThiknessProperty, (Binding)e.NewValue);
+                BindingOperations.SetBinding(d, OutlineThicknessProperty, (Binding)e.NewValue);
             if (e.OldValue != e.NewValue && ParentRatingControl != null)
                 ParentRatingControl.GenerateItems();
         }
@@ -122,17 +122,17 @@ namespace Bratched.Tools.RatingControl
         DependencyProperty.RegisterAttached("OutlineColor", typeof(SolidColorBrush), typeof(RateItemDefinition),
         new PropertyMetadata(null, AspectChanged2));
 
-    //    public static readonly DependencyProperty OutlineThiknessProperty =
-    //       DependencyProperty.Register("OutlineThikness", typeof(object), typeof(RatingControl),
-    //       new PropertyMetadata(null, OutlineThiknessChanged));
+    //    public static readonly DependencyProperty OutlineThicknessProperty =
+    //       DependencyProperty.Register("OutlineThickness", typeof(object), typeof(RatingControl),
+    //       new PropertyMetadata(null, OutlineThicknessChanged));
 
     //    public static readonly DependencyProperty PathDataProperty =
     //     DependencyProperty.RegisterAttached("PathData", typeof(object), typeof(RatingControl),
     //      new PropertyMetadata(null, PathDataChanged));
     
-          public static readonly DependencyProperty OutlineThiknessProperty =
-           DependencyProperty.Register("OutlineThikness", typeof(object), typeof(RateItemDefinition),
-           new PropertyMetadata(null, OutlineThiknessChanged));
+          public static readonly DependencyProperty OutlineThicknessProperty =
+           DependencyProperty.Register("OutlineThickness", typeof(object), typeof(RateItemDefinition),
+           new PropertyMetadata(null, OutlineThicknessChanged));
 
           public static readonly DependencyProperty PathDataProperty =
            DependencyProperty.RegisterAttached("PathData", typeof(object), typeof(RateItemDefinition),

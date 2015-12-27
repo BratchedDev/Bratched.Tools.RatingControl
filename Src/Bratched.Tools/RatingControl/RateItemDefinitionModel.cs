@@ -17,7 +17,7 @@ namespace Bratched.Tools.RatingControl
     {
         public SolidColorBrush BackgroundColor { get; set; }
         public SolidColorBrush OutlineColor { get;set; }
-        public object OutlineThikness { get; set; }
+        public object OutlineThickness { get; set; }
         public object PathData { get; set; }
         
     }

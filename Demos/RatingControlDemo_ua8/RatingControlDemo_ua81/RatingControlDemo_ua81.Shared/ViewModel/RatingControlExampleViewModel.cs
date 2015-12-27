@@ -65,8 +65,8 @@ namespace RatingControlDemo_ua81.ViewModel
                     
             
             Nb = 10;                
-            FullOutlineThikness = 5;
-            EmptyOutlineThikness = 1;
+            FullOutlineThickness = 5;
+            EmptyOutlineThickness = 1;
             PathData = "M 5.5,0 L 4,4 L 0,4 L 3,7 L 2,11 L 5,9 L 6, 9 L 9,11 L 8,7 L 11,4 L 7,4 L 5.5,0";
             Value = 0;
             RoundValueSlice = 0.25;
@@ -164,23 +164,23 @@ namespace RatingControlDemo_ua81.ViewModel
         }
 
 
-        public double FullOutlineThikness
+        public double FullOutlineThickness
         {
-            get { return _fullOutlineThikness; }
+            get { return _fullOutlineThickness; }
             set
             {
-                _fullOutlineThikness = value;
-                RaisePropertyChanged("FullOutlineThikness");
+                _fullOutlineThickness = value;
+                RaisePropertyChanged("FullOutlineThickness");
             }
         }
 
-        public double EmptyOutlineThikness
+        public double EmptyOutlineThickness
         {
-            get { return _emptyOutlineThikness; }
+            get { return _emptyOutlineThickness; }
             set
             {
-                _emptyOutlineThikness = value;
-                RaisePropertyChanged("EmptyOutlineThikness");
+                _emptyOutlineThickness = value;
+                RaisePropertyChanged("EmptyOutlineThickness");
             }
         }
 
@@ -235,8 +235,8 @@ namespace RatingControlDemo_ua81.ViewModel
         private SolidColorBrush _emptyOutlineColor;
         private SolidColorBrush _emptyColor;
 
-        private double _emptyOutlineThikness;
-        private double _fullOutlineThikness;
+        private double _emptyOutlineThickness;
+        private double _fullOutlineThickness;
         private string _pathData;
         private Brush _backgroundColor;
         private Thickness _padding;

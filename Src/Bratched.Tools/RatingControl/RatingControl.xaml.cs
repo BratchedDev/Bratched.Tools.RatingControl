@@ -42,6 +42,7 @@ namespace Bratched.Tools.RatingControl
 #if NETFX_CORE
             this.DataContextChanged += RatingControl_DataContextChanged;
             gridCaptureMovement.PointerMoved += gridRating_PointerMoved;
+            gridCaptureMovement.PointerPressed += gridRating_PointerPressed;
             gridCaptureMovement.ManipulationDelta += GridCaptureMovement_ManipulationDelta;
             
 #endif
@@ -562,6 +563,20 @@ namespace Bratched.Tools.RatingControl
                 e.Handled = true; 
 				if (DEBUG_MODE)
                 System.Diagnostics.Debug.WriteLine("PointerMoved {0}", DateTime.Now);   
+                PointerPoint p = e.GetCurrentPoint(rateItems.Children.First());
+                if (p != null && p.Position != null)
+                    ChangeItemsValue(p.Position.X);
+
+            }            
+        }
+
+        private void gridRating_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            if (IsEditable && IsEnabled && Visibility==Visibility.Visible && rateItems != null && rateItems.Children.Any())
+            {
+                e.Handled = true; 
+				if (DEBUG_MODE)
+                System.Diagnostics.Debug.WriteLine("PointerPressed {0}", DateTime.Now);   
                 PointerPoint p = e.GetCurrentPoint(rateItems.Children.First());
                 if (p != null && p.Position != null)
                     ChangeItemsValue(p.Position.X);

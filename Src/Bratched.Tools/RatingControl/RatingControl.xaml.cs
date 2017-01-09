@@ -264,14 +264,15 @@ namespace Bratched.Tools.RatingControl
             IRateItemDefinition fullItemDefinition = GetDefinitionFromIndex(FullItemsDefinition, i); 
             item.FullBackgroundColor = fullItemDefinition != null && fullItemDefinition.BackgroundColor != null ? fullItemDefinition.BackgroundColor : fullDefaultDefinition.BackgroundColor;
             item.FullOutlineColor = fullItemDefinition != null && fullItemDefinition.OutlineColor != null ? fullItemDefinition.OutlineColor : fullDefaultDefinition.OutlineColor;
-            item.FullOutlineThickness = fullItemDefinition != null && fullItemDefinition.OutlineThickness is Double ? Convert.ToDouble(fullItemDefinition.OutlineThickness) : Convert.ToDouble(fullDefaultDefinition.OutlineThickness);
+			double r;
+            item.FullOutlineThickness = fullItemDefinition != null && Double.TryParse(fullItemDefinition.OutlineThickness, out r) ? r : Convert.ToDouble(fullDefaultDefinition.OutlineThickness);
             item.FullPathData = fullItemDefinition != null && fullItemDefinition.PathData is String ? Convert.ToString(fullItemDefinition.PathData) : Convert.ToString(fullDefaultDefinition.PathData);
 
             IRateItemDefinition emptyDefaultDefinition = GetDefinitionFromIndex(defaultEmpty, i);
             IRateItemDefinition emptyItemDefinition = GetDefinitionFromIndex(EmptyItemsDefinition, i); 
             item.EmptyBackgroundColor = emptyItemDefinition != null && emptyItemDefinition.BackgroundColor != null ? emptyItemDefinition.BackgroundColor : emptyDefaultDefinition.BackgroundColor;
             item.EmptyOutlineColor = emptyItemDefinition != null && emptyItemDefinition.OutlineColor != null ? emptyItemDefinition.OutlineColor : emptyDefaultDefinition.OutlineColor;
-            item.EmptyOutlineThickness = emptyItemDefinition != null && emptyItemDefinition.OutlineThickness is Double ? Convert.ToDouble(emptyItemDefinition.OutlineThickness) : Convert.ToDouble(emptyDefaultDefinition.OutlineThickness);
+            item.EmptyOutlineThickness = emptyItemDefinition != null && Double.TryParse(emptyItemDefinition.OutlineThickness, out r) ? r : Convert.ToDouble(emptyDefaultDefinition.OutlineThickness);
             item.EmptyPathData = emptyItemDefinition != null && emptyItemDefinition.PathData is String ? Convert.ToString(emptyItemDefinition.PathData) : Convert.ToString(emptyDefaultDefinition.PathData);
 
             if (localValue > 1)
